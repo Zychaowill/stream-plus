@@ -1,5 +1,8 @@
 package org.streamframework.foundation.clean.code;
 
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 /**
  * Interface to help remove the tedious if and else.
  *  
@@ -14,9 +17,11 @@ public interface Chain {
 	
 	Chain not();
 	
-	Chain when();
+	Chain on(Predicate<?> cond);
 	
-	Chain to();
+	Chain when(Predicate<?> cond);
 	
-	Chain otherwise();
+	Chain to(Function<?, ?> done);
+	
+	Chain otherwise(Function<?, ?> done);
 }
