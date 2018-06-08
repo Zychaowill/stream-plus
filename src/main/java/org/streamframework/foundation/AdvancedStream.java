@@ -1,10 +1,8 @@
 package org.streamframework.foundation;
 
-import java.util.stream.Stream;
-
-public interface AdvancedStream<T> extends Stream<T> {
+public interface AdvancedStream {
 	
-	public static <T> AdvancedStream<T> of(T t) {
+	public static <T> AdvancedStream of(T t) {
 		return null;
 	}
 }
