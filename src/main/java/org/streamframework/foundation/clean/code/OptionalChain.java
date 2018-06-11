@@ -8,7 +8,7 @@ public interface OptionalChain<T> {
 
 	OptionalChain<T> is(Predicate<T> t);
 	
-	<IN, OUT> OptionalChain get(Function<IN, OUT> fetcher);
+	<IN, OUT> OptionalChain<T> get(Function<IN, OUT> fetcher);
 	
 	OptionalChain<T> get(Object value);
 	

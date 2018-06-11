@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class DefaultOptionalChain<T> implements OptionalChain {
+public class DefaultOptionalChain<T> implements OptionalChain<T> {
 
 	private T value;
 	private List<Boolean> isLabels = new ArrayList<>();
@@ -21,36 +21,36 @@ public class DefaultOptionalChain<T> implements OptionalChain {
 	}
 	
 	@Override
-	public <T> OptionalChain is(Predicate<T> t) {
+	public OptionalChain<T> is(Predicate<T> t) {
 		isLabels.add(t.test((T) value));
 		return this;
 	}
 
 	@Override
-	public <IN, OUT> OptionalChain get(Function<IN, OUT> fetcher) {
+	public <IN, OUT> OptionalChain<T> get(Function<IN, OUT> fetcher) {
 		values.add(fetcher.apply((IN) value));
 		return this;
 	}
 
 	@Override
-	public OptionalChain get(Object value) {
+	public OptionalChain<T> get(Object value) {
 		values.add(value);
 		return this;
 	}
 
 	@Override
-	public OptionalChain or() {
+	public OptionalChain<T> or() {
 		return this;
 	}
 
 	@Override
-	public OptionalChain isNull() {
+	public OptionalChain<T> isNull() {
 		isLabels.add((value == null));
 		return this;
 	}
 
 	@Override
-	public OptionalChain nonNull() {
+	public OptionalChain<T> nonNull() {
 		isLabels.add((value != null));
 		return this;
 	}
